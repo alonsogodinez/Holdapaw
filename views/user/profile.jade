@@ -1,0 +1,37 @@
+extends ../layout
+block content
+    .container-fluid
+        h1.text-center RED ANIMALISTA HOLD A PAW
+        br
+        .col-lg-6.col-md-4.col-sm-6
+            img.col-lg-12(src='#{users[0].photo}', alt='Foto')
+            p
+                br
+        .col-lg-6.col-md-8.col-sm-6.text-center.contact-box
+            h2 Conoce a #{users[0].firstName}, parte de nuestra red animalista
+            h3
+                strong Nombre
+            p #{users[0].firstName}
+            h3
+                strong Apellido
+            p #{users[0].lastName}
+            if users[0].cellphone
+                h3
+                    strong Telefono
+                p #{users[0].cellphone}
+            h3
+                strong Correo Electrónico
+            p
+                a(href='mailto:#{users[0].email}')     #{users[0].email}
+
+        if users[0].adoptions.length > 0
+            for pet in user[0].adoptions
+                h3.text-center Mis Mascotas adoptadas
+                .row
+                    .card.col-lg-4.contact-box
+                        img.card-img-top(src=pet.photo, alt='Foto')
+                        .card-block
+                            h4.card-title #{pet[0].name}
+                        .card-block
+                            a.btn.btn-celestito(href='/mascotas/perfil/#{pet._id}') Ver más
+

@@ -1,0 +1,107 @@
+extends ../layout
+block content
+    include ../event/create
+    include ../event/edit
+    .container
+        .text-center
+            h1 #{association[0].userId.firstName}
+            h4
+                span Asociación de protección y ayuda para los animales
+        br
+        .col-lg-6
+            img.col-lg-12(src='#{association[0].userId.photo}', alt='Asociacion #{association[0].userId.firstName}')
+            p
+                br
+        .col-lg-6.contact-box
+            h3 Contáctanos
+            strong Telefono
+            p #{association[0].userId.cellphone}
+            strong Correo Electrónico
+            p
+                a(href='mailto:#{association[0].userId.email}')     #{association[0].userId.email}
+            if association[0].address
+                strong Dirección
+                p #{association[0].address}
+            if association[0].bankAccount
+                strong Cuenta Bancaria
+                p #{association[0].bankAccount}
+            Strong Síguenos en nuestras redes sociales
+            br
+            a(href='#{association[0].facebook}',target='_blank',style='font-size:3em')
+                i.fa.fa-facebook-official
+
+        .row
+        if(association[0].userId.godsons.length > 0)
+            h3.text-center Conoce a nuestros inquilinos
+            .row
+                each pet in association[0].events
+                    .card.col-lg-4.contact-box
+                        img.card-img-top(src=pet.photo, alt='Foto')
+                        .card-block
+                            h4.card-title #{pet.name}
+                        .card-block
+                            a.btn.btn-celestito(href='/mascotas/perfil/#{pet._id}') Ver más
+
+
+        h3.text-center Eventos
+        .row
+            if (user.isAdmin)
+                .text-center
+                    a.btn.btn-sm.btn-warning(data-remodal-target='registrarEvento',type="button")
+                        i.glyphicon.glyphicon-edit
+                br
+            if association[0].events.length > 0
+                each event in association[0].events
+                    .card.col-lg-4.col-md-6.col-sm-12
+                        img.card-img-top.col-lg-12(src='#{event.photo}', alt='Foto Evento')
+                        .card-block
+                            h4.card-title #{event.name}
+                            p.card-text
+                                | #{event.description}
+                        ul.list-group.list-group-flush
+                            li.list-group-item #{moment(event.from).format('MMMM Do YYYY, h:mm:ss a')}
+                            li.list-group-item #{moment(event.to).format('MMMM Do YYYY, h:mm:ss a')}
+                        if (user.isAdmin)
+                            .card-block
+                                a.btn.btn-celestito(href="javascript:onclick=getInfo('/eventos/listar/#{association[0]._id}/#{event._id}','#{event._id}')") Editar Evento
+            else
+                h4.text-center No existen eventos registrados
+block scripts
+
+    script(src='/js/event/event.js')
+    script.
+        (function () {
+            $('#id_from').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                format: 'DD/MM/YYYY h:mm a',
+                shortTime: true
+            });
+            $('#id_to').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                format: 'DD/MM/YYYY h:mm a',
+                shortTime: true
+            }).on('change', function (e, date) {
+                $('#id_to').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+            $('#id_from_edit').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                format: 'DD/MM/YYYY h:mm a',
+                shortTime: true
+            });
+            $('#id_to_edit').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                format: 'DD/MM/YYYY h:mm a',
+                shortTime: true
+            }).on('change', function (e, date) {
+                $('#id_to_edit').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+            var associationInput1 = document.getElementById('associationID');
+            var associationInput2 = document.getElementById('associationID_edit');
+            associationInput1.value = '#{association[0]._id}';
+            associationInput2.value = '#{association[0]._id}';
+            $(".btn-pref .btn").click(function () {
+                $(".btn-pref .btn").removeClass("btn-celestito").addClass("btn-default");
+                // $(".tab").addClass("active"); // instead of this do the below
+                $(this).removeClass("btn-default").addClass("btn-celestito");
+            });
+        })();

@@ -1,0 +1,28 @@
+h1  Nueva Mascota
+.bs-callout.bs-callout-warning.hidden.alert.alert-warning(role='alert')
+    h4  Atención
+    p Existen algunos campos que hay que revisar.
+.bs-callout.bs-callout-info.hidden.alert.alert-info(role='alert')
+    h4 Muy bien
+    p Lo estas haciendo bien, sigue adelante.
+
+form#createPetForm(enctype='multipart/form-data', name='createPetForm',data-parsley-validate='')
+    fieldset.form-group
+        label Nombre
+        input.form-control(type='text', name='name',data-parsley-required='true')
+    fieldset.form-group
+        label Género
+        input.form-control(type='text', name='gender',data-parsley-required='true')
+    fieldset.form-group
+        label Nacimiento
+        input.form-control(type='date', name='birthday',,data-parsley-required='true')
+    fieldset.form-group
+        label Tamaño
+        input.form-control(type='text', name='size',data-parsley-required='true')
+    fieldset.form-group
+        label Descripcion
+        input.form-control(type='text', name='description',data-parsley-required='true')
+    fieldset.form-group
+        label Foto
+        input.form-control-file(type='file', name='photo',accept='image/*')
+    button#createPetBtn.btn.btn-default(type='submit') Registrar

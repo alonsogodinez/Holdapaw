@@ -1,0 +1,40 @@
+.remodal.radius-extra#createVeterinaryModal(data-remodal-id='createVeterinaryModal',data-remodal-options='closeOnConfirm: false')
+  button.orange.remodal-close(data-remodal-action='close')
+  h2  Registra una clinica veterinaria
+
+  form#createVeterinaryForm(enctype='multipart/form-data', name='createVeterinaryForm',data-parsley-validate='')
+      fieldset.form-group
+        .col-sm-offset-2.col-sm-8
+          .col-sm-6.np.pr-input-sm
+            label RUC
+            input.form-control(type='text', name='ruc',maxlength=11,data-parsley-type='digits',data-parsley-required='true',data-parsley-minlength='11',data-parsley-trigger='change')
+          .col-sm-6.np
+            label Nombre
+            input#password1.form-control(type='text', name='bussinessName', data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-sm-offset-2.col-sm-8
+          .col-sm-6.np.pr-input-sm
+            label Celular
+            input.form-control(type='text', name='cellphone', data-parsley-type='digits',data-parsley-required='true',data-parsley-trigger='change')
+          .col-sm-6.np
+            label Telefono
+            input.form-control(type='text', name='telephone', data-parsley-type='digits',data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-xs-12
+          label Direccion
+        .col-sm-offset-2.col-sm-8
+          input.form-control(type='text', name='address', data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-xs-12
+          label Email
+        .col-sm-offset-2.col-sm-8
+          input.form-control(type='email', name='email', data-parsley-required='true',data-parsley-type='email',data-parsley-trigger='focusout',
+          data-parsley-email-Exists='true')
+      fieldset.form-group
+        .col-xs-12
+          label Foto
+        .col-sm-offset-2.col-sm-8
+          input.form-control-file(type='file' name='photo',accept="image/*",data-parsley-required='true')
+      .col.sm-10.mb
+        button#createVeterinaryBtn.radius.remodal-confirm.btn-celestito(type='submit') Guardar
+        button.radius.remodal-cancel(data-remodal-action='cancel') Cancelar

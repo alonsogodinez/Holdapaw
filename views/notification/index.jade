@@ -1,0 +1,53 @@
+
+extends ../layout
+
+
+block navbar_modules
+  if user.isAdmin
+    li
+      a(href='#createVeterinarianModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-user
+        span.visible-xs Registrar Veterinario
+    li
+      a(href='#createVeterinaryModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-home
+        span.visible-xs Registrar Clinica
+    li
+      a(href='#createAssociationModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-heart
+        span.visible-xs Registrar Asociación
+
+  li
+    a(href='#createDonationModal')
+      span.hidden-xs.glyphicon.glyphicon-plus
+      span.hidden-xs.glyphicon.glyphicon-piggy-bank
+      span.visible-xs Donar
+
+
+block modals
+  include ../veterinarian/create
+  include ../veterinary/create
+  include ../association/create
+  include ../donation/create
+  include ../adoption/create
+
+block content
+  section.card-list.text-center
+    if user.notifications
+      each notification in user.notifications
+        if notification.type == 'adoptionRequest'
+          .notification-card.radius
+            p.message.text-center= notification.message
+            p.warning
+            | Antes que nada contáctalo, verifica que sera un buen lugar para la mascota.
+            | Despues de que hayas hecho la entrega presiona aceptar para que formalmente sea adoptado
+            p.question ¿Aceptas?
+            button.confirmAdoption.btn.btn-celestito(data-id=notification.petId, data-sender=notification.sender) SI
+            button.declineAdoption.btn.btn-rojito(data-id=notification.petId, data-sender=notification.sender) NO
+
+
+block scripts
+  script(src='/js/notification/notification.js')

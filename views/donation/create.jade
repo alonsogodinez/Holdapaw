@@ -1,0 +1,27 @@
+
+.remodal.radius-extra#createDonationModal(data-remodal-id='createDonationModal',data-remodal-options='closeOnConfirm: false')
+  button.orange.remodal-close(data-remodal-action='close')
+  h2  Haz una donación ♥
+
+  form#createDonationForm(enctype='multipart/form-data', name='createDonationForm',data-parsley-validate='')
+    fieldset.form-group
+      .col-xs-12
+        label Cantidad a donar
+      .col-sm-offset-2.col-sm-8
+        input.form-control.text-center(type='text', name='amount', data-parsley-type='digits',data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-xs-12
+        label Tipo de moneda
+      .col-sm-offset-2.col-sm-8
+        select.form-control.text-center(name='cashType')
+          option(value="Soles") S/. Soles
+          option(value="Dolares") $ Dolares
+    fieldset.form-group
+      .col-xs-12
+        label Foto de voucher
+      .col-sm-offset-2.col-sm-8
+        input.form-control.mb(type='file', name='photo',accept='image/*',data-parsley-required='true')
+    .col.sm-10.mb
+      button#createDonationBtn.radius.remodal-confirm.btn-celestito(type='submit') Registrar
+      button.radius.remodal-cancel(data-remodal-action='cancel') Cancelar
+

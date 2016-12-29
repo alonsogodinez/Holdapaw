@@ -1,0 +1,117 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  script(src='js/plugins/pace-options.js')
+  script(src='js/plugins/pace.min.js')
+  link(rel='stylesheet', href='/css/plugins/corner-decorator.css')
+
+  link(href='https://fonts.googleapis.com/css?family=Unkempt:400,700',rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700',rel='stylesheet')
+  link(rel='stylesheet', href='/css/app.css')
+
+  link(rel='stylesheet', href='/offline/bootstrap.min.css')
+  link(rel='stylesheet', href='/css/style.css')
+
+
+  //link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css')
+  //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/css/plugins/animate.css')
+  link(rel='stylesheet', href='/css/plugins/remodal.css')
+  link(rel='stylesheet', href='/css/plugins/remodal-default-theme.css')
+  link(rel='stylesheet',href='/offline/toastr.min.css')
+
+  link(rel='styleSheet',href='/css/plugins/parsley.css')
+  link(rel='styleSheet',href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css')
+
+
+
+html
+  body
+    include user/create
+    include login
+
+
+    nav.navbar.navbar-default
+      .container-fluid
+
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#nav-collapse', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+
+            img(alt='HOLD A PAW' src='/images/logo.png')
+            | HOLD A PAW
+
+
+        #nav-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav
+
+
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#loginModal') Ingresar
+
+    section.slider
+      .overlay
+        h2.big-text.text-center Agarra una pata
+        h3.big-text.text-center Se parte de esta gran comunidad animalista !
+        h4.big-text.text-center ADOPTA - CUIDA - AMA
+          .content
+            A#registerUser.text-center.btn.radius.btn-lg.btn-celestito(href='#registrarUsuarioModal') Registrate ya!
+
+    section.mission.row.nomargin
+      .col-sm-5.hidden-xs
+        figure
+          img.radius(src='/images/dog-1.jpg')
+      .col-sm-7
+        h2 NUESTRA MISIÓN
+        hr.orange-line
+        p
+          | Cada año cientos de animales como perros, gatos quedan desamparados por diversas razones.
+          | Nuestra mision es encontrar a estos animales y hacer su vida mejor.
+          | Asi como los humanos ellos necesitan amor, cariño y un hogar.
+
+    section.vision.row.nomargin
+      .col-sm-7
+        h2 NUESTRA VISIÓN
+        hr.right
+        p
+          | Queremos asegurarnos que mediante arduo trabajo, no queden animales sin hogar en las calles. Que cada uno de los animales encuentre su dulce hogar.
+
+          | Ser una organizacion animalista reconocida en toda Latinoamerica y generar conciencia social animalista.
+      .col-sm-5.right.hidden-xs
+        figure
+          img.radius(src='/images/cat-2.jpg')
+
+    footer.footer
+      p.social-icons.text-center
+        i.fa.fa-facebook-square
+        i.fa.fa-twitter-square
+      p.credit.text-center
+       | HoldAPaw © 2016
+
+
+
+
+
+    //script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    //script(src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js')
+    //script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+
+    script(src='/offline/jquery.min.js')
+    script(src='/offline/toastr.min.js')
+    script(src='/offline/bootstrap.min.js')
+    script(src='/js/plugins/remodal.min.js')
+    script(src='/js/plugins/parsley.min.js')
+    script(src='/js/plugins/parsley-es.js')
+    script(src='/js/user/user.js')
+    script(src='/js/login.js')
+
+
+
+

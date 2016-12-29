@@ -1,0 +1,61 @@
+extends  ../layout
+
+block navbar_modules
+  if user.isAdmin
+    li
+      a(href='#createVeterinarianModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-user
+        span.visible-xs Registrar Veterinario
+    li
+      a(href='#createVeterinaryModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-home
+        span.visible-xs Registrar Clinica
+    li
+      a(href='#createAssociationModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-heart
+        span.visible-xs Registrar Asociación
+
+  li
+    a(href='#createDonationModal')
+      span.hidden-xs.glyphicon.glyphicon-plus
+      span.hidden-xs.glyphicon.glyphicon-piggy-bank
+      span.visible-xs Donar
+
+block modals
+  include ../veterinarian/create
+  include ../veterinary/create
+  include ../association/create
+  include ../donation/create
+  include ../adoption/create
+
+
+block content
+  table.table.pt
+    thead
+      tr
+        th.text-center Donado por
+        th.text-center Voucher
+        th.text-center Cantidad
+        th.text-center Verificar
+    tbody
+      if donations
+        each donation in donations
+          tr.text-center
+            td= donation.by[0].firstName
+            td
+              a(href=donation.photo)
+                img(width=80,src=donation.photo)
+            td
+              if donation.cashType == 'Soles'
+              | #{donation.amount}
+            td
+              if !donation.verified
+                a.verifyDonation.btn.btn-celestito(data-id="#{donation._id}") Verificar
+              else
+                p Verificado
+
+block scripts
+  script(src='/js/donation/donation.js')

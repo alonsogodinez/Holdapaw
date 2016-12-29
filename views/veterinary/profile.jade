@@ -1,0 +1,42 @@
+extends ../layout
+block content
+    .container
+        .text-center
+            h1 #{veterinaries[0].bussinessName}
+            h2 RUC. #{veterinaries[0].RUC}
+            h4
+                span Clínica Veterinaria
+        br
+        .row
+            .col-lg-6
+                img(src='#{veterinaries[0].photo}', alt='Fotografia')
+            .col-lg-6.contact-box
+                h3 Contáctame
+                if veterinaries[0].telephone
+                    strong Telefono
+                    p #{veterinaries[0].telephone}
+                if veterinaries[0].cellphone
+                    strong Celular
+                    p #{veterinaries[0].cellphone}
+
+                if veterinaries[0].address
+                    strong Dirección
+                    p #{veterinaries[0].address}
+                if veterinaries[0].email
+                    strong Correo Electrónico
+                        p
+                            a(href='mailto:#{veterinaries[0].email}')     #{veterinaries[0].email}
+
+        h3.text-center Veterinarios
+        .row
+            if veterinaries[0].veterinarians.length > 0
+                each veterinarian in veterinaries[0].veterinarians
+                    .card.col-lg-4.col-md-6.col-sm-12
+                        img.card-img-top.col-lg-12(src='#{veterinarian.userId.photo}', alt='Foto Evento')
+                        .card-block.text-center
+                            br
+                            h4.card-title #{veterinarian.userId.firstName} #{veterinarian.userId.lastName}
+                        .card-block
+                            a.btn.btn-celestito(href='/veterinarios/perfil/#{veterinarian._id}') Ver perfil
+            else
+                h4.text-center No existen veterinarios registrados

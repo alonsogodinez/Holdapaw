@@ -1,0 +1,30 @@
+.remodal.radius-extra#editarEventoModal(data-remodal-id='editarEvento',data-remodal-options='closeOnConfirm: false')
+    button.remodal-close(data-remodal-action='close')
+    h1  Editar
+    .bs-callout.bs-callout-warning.hidden.alert.alert-warning(role='alert')
+        h4  Atención
+        p Existen algunos campos que hay que revisar.
+    .bs-callout.bs-callout-info.hidden.alert.alert-info(role='alert')
+        h4 Muy bien
+        p Lo estas haciendo bien, sigue adelante.
+    form#editEventForm(enctype='multipart/form-data', name='editEventForm',data-parsley-validate='')
+        input#associationID_edit(type='hidden',name='association',value='')
+        fieldset.form-group
+            label Nombre
+            input#id_name_edit.form-control(name='name',data-parsley-required='true',data-parsley-trigger='change')
+        fieldset.form-group
+            label Desde
+            input#id_from_edit.form-control(name='from',type='text',data-parsley-required='true',data-parsley-trigger='change')
+        fieldset.form-group
+            label Hasta
+            input#id_to_edit.form-control(name='to',type='text',data-parsley-required='true',data-parsley-trigger='change')
+        fieldset.form-group
+            label Lugar
+            input#id_place_edit.form-control(name='place',type='text',data-parsley-required='true',data-parsley-trigger='change')
+        fieldset.form-group
+            label Descripción
+            textarea#id_description_edit.form-control(name='description')
+        fieldset.form-group
+            label Foto
+            input#id_photo_edit.form-control-file(type='file', name='photo',accept='image/*',data-parsley-required='true')
+        button#editEventBtn.radius.remodal-confirm.btn-celestito(type='submit') Editar

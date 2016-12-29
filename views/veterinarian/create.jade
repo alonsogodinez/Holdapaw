@@ -1,0 +1,69 @@
+.remodal.radius#createVeterinarianModal(data-remodal-id='createVeterinarianModal')
+  button.remodal-close.orange(data-remodal-action='close')
+  h2  Registra un nuevo veterinario
+    .bs-callout.bs-callout-warning.hidden.alert.alert-warning(role='alert')
+      h4  Atención
+      p Existen algunos campos que hay que revisar.
+    .bs-callout.bs-callout-info.hidden.alert.alert-info(role='alert')
+      h4 Muy bien
+      p Lo estas haciendo bien, sigue adelante.
+  form.radius#createVeterinarianForm(enctype='multipart/form-data', name='createVeterinarianForm',data-parsley-validate='')
+    fieldset.form-group
+      .col-xs-12
+        label Email
+      .col-sm-offset-2.col-sm-8
+        input.form-control(type='text', name='email',data-parsley-type='email',data-parsley-required='true',data-parsley-trigger='focusout',
+      data-parsley-email-Exists='true',data-parsley-email-Isreal='True')
+    fieldset.form-group
+      .col-xs-12
+        label Contraseña
+      .col-sm-offset-2.col-sm-8
+        input#password1.form-control(type='password', name='password',data-parsley-minlength='8',data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-xs-12
+        label Confirmacion de contraseña
+      .col-sm-offset-2.col-sm-8
+        input.form-control(type='password', name='password2',data-parsley-minlength='8',data-parsley-equalto='#password1',data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-sm-offset-2.col-sm-8
+        .col-sm-6.np.pr-input-sm
+          label Nombres
+          input.form-control(type='text', name='firstName', data-parsley-required='true',data-parsley-trigger='change')
+        .col-sm-6.np
+          label Apellidos
+          input.form-control(type='text', name='lastName', data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-sm-offset-2.col-sm-8
+        .col-sm-6.np.pr-input-sm
+          label DNI
+          input.form-control(type='text', name='dni', maxlength=8,data-parsley-type='digits',data-parsley-required='true',data-parsley-minlength='8',data-parsley-trigger='change')
+
+        .col-sm-6.np
+          label Telefono/Celular
+          input.form-control(type='text', name='cellphone', data-parsley-type='digits',data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-sm-offset-2.col-sm-8
+        .col-sm-6.np.pr-input-sm
+          label CMVP
+          input.form-control(type='text', name='cmvp',data-parsley-required='true',data-parsley-trigger='change')
+        .col-sm-6.np
+          label Especialidad
+          input.form-control(type='text', name='speciality',data-parsley-required='true',data-parsley-trigger='change')
+    fieldset.form-group
+      .col-xs-12
+        label Veterinaria
+      .col-sm-offset-2.col-sm-8
+        select.form-control(name='veterinary')
+          option(value=0) No encuentro mi veterinaria
+          if veterinaries
+            each veterinary in veterinaries
+              option(value=veterinary._id)= veterinary.bussinessName
+        a.label.label-danger(target="_blank", href="/") No encuentras tu veterinaria?
+    fieldset.form-group
+      .col-xs-12
+        label Foto
+      .col-sm-offset-2.col-sm-8
+        input.form-control-file(type='file' name='photo',accept='image/*')
+    .col.sm-10.mb
+      button#createVeterinarianBtn.radius.remodal-confirm.btn-celestito(type='submit') Registrar
+      button.radius.remodal-cancel(data-remodal-action='cancel') Cancelar

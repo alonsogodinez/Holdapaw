@@ -1,0 +1,94 @@
+extends ../layout
+block content
+    include ../clinicalAppointment/create
+    .col-lg-12.col-sm-12
+        .card.hovercard
+            .card-background
+                img.card-bkimg(alt='', src='#{pet[0].photo}')
+            .useravatar
+                img(alt='', src='#{pet[0].photo}')
+            .card-info
+                span.card-title #{pet[0].name}
+        .btn-pref.btn-group.btn-group-justified.btn-group-lg(role='group', aria-label='...')
+            .btn-group(role='group')
+                button#stars.btn.btn-celestito(type='button', href='#tab1', data-toggle='tab')
+                    span.glyphicon.glyphicon-star(aria-hidden='true')
+                    .hidden-xs Datos de la Mascota
+            .btn-group(role='group')
+                button#favorites.btn.btn-default(type='button', href='#tab2', data-toggle='tab')
+                    span.glyphicon.glyphicon-heart(aria-hidden='true')
+                    .hidden-xs Historial Médico
+        .well
+            .tab-content
+                #tab1.tab-pane.fade.in.active.text-center
+                    h3 Conoce más a #{pet[0].name}
+                    table.table.borderless
+                        tbody
+                            tr
+                                td Género:
+                                td #{pet[0].gender}
+                            tr
+                                td Fecha de Nacimiento:
+                                td #{moment(pet[0].birthday).format('MMMM Do YYYY, h:mm:ss a')}
+                            tr
+                                td Tamaño
+                                td #{pet[0].size}
+                            tr
+                            tr
+                                td Publicado por
+                                td
+                                    a(href='/usuarios/perfil/#{pet[0].publisher._id}') #{pet[0].publisher.firstName} #{pet[0].publisher.lastName}
+                            td Número de Contacto
+                            td
+                                | #{pet[0].publisher.cellphone}
+                #tab2.tab-pane.fade.in.text-center
+                    h3 Enterate del historial clínico de #{pet[0].name}
+                    if (user.type == "veterinarian")
+                        a.btn.btn-sm.btn-warning(data-remodal-target='registrarAtencionMedica',data-original-title="Registrar una atención médica",data-toggle="tooltip",type="button")
+                            i.glyphicon.glyphicon-edit
+                        br
+                    .row
+                        each clinicalData in pet[0].clinicalAppointments
+                            .col-lg-6.col-md-6.col-sm-12
+                                if clinicalData.health === 'Bueno'
+                                    legend
+                                        span.label.label-success #{moment(clinicalData.date).format('MMMM Do YYYY, h:mm:ss a')}
+                                if clinicalData.health === 'Regular'
+                                    legend
+                                        span.label.label-warning #{moment(clinicalData.date).format('MMMM Do YYYY, h:mm:ss a')}
+                                if clinicalData.health === 'Malo'
+                                    legend
+                                        span.label.label-danger #{moment(clinicalData.date).format('MMMM Do YYYY, h:mm:ss a')}
+                                if clinicalData.observations
+                                    Strong Observaciones
+                                    p.text-left #{clinicalData.observations}
+                                if clinicalData.diagnosis
+                                    strong Diagnosticos
+                                    p.text-left #{clinicalData.diagnosis}
+                                if clinicalData.recommendations
+                                    strong Recomendaciones
+                                    p.text-left #{clinicalData.recommendations}
+                                if clinicalData.medicaments
+                                    strong Medicamentos
+                                    p.text-left #{clinicalData.medicaments}
+                                if clinicalData.indications
+                                    strong Indicaciones
+                                    p.text-left #{clinicalData.indications}
+                                if clinicalData.health
+                                    strong Salud
+                                    p.text-left #{clinicalData.health}
+
+
+block scripts
+    script(src='/js/clinicalAppointment/clinicalAppointment.js')
+    script.
+        (function (){
+            var petInput = document.getElementById('petId');
+            petInput.value = '#{pet[0]._id}';
+            $(".btn-pref .btn").click(function () {
+                $(".btn-pref .btn").removeClass("btn-celestito").addClass("btn-default");
+                // $(".tab").addClass("active"); // instead of this do the below
+                $(this).removeClass("btn-default").addClass("btn-celestito");
+            });
+        })();
+

@@ -1,0 +1,35 @@
+extends ../layout
+block content
+    .container-fluid
+        h1.text-center RED DE VETERINARIOS
+        br
+        .col-lg-6.col-md-4.col-sm-6
+            img.col-lg-12(src=veterinarians[0].userId.photo, alt='Foto')
+            p
+                br
+        .col-lg-6.col-md-8.col-sm-6.text-center.contact-box
+            h2 Conoce a #{veterinarians[0].userId.firstName}
+            h3
+                strong Nombre
+            p #{veterinarians[0].userId.firstName}
+            h3
+                strong Apellido
+            p #{veterinarians[0].userId.lastName}
+            h3
+                strong Telefono
+            p #{veterinarians[0].userId.cellphone}
+            h3
+                strong Correo Electrónico
+            p
+                a(href='mailto:#{veterinarians[0].userId.email}')     #{veterinarians[0].userId.email}
+            if veterinarians[0].veterinary
+                h3
+                    strong Centro Laboral
+                p Veterinaria
+                    a(href='/clinicas/perfil/#{veterinarians[0].veterinary._id}')  #{veterinarians[0].veterinary.bussinessName}
+            h3
+                strong CMVP
+            p #{veterinarians[0].cmvp}
+            h3
+                strong Especialidad
+            p #{veterinarians[0].speciality}

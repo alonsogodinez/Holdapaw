@@ -1,0 +1,26 @@
+.remodal.radius-extra#registrarAtencionMedicaModal(data-remodal-id='registrarAtencionMedica',data-remodal-options='closeOnConfirm: false')
+    button.remodal-close(data-remodal-action='close')
+    form#createClinicalAppointmentForm(enctype='multipart/form-data', name='createClinicalAppointmentForm',data-parsley-validate='')
+        input#petId(type='hidden',name='pet',value='')
+        fieldset.form-group
+            label Diagnostico
+            textarea.form-control(name='diagnosis',data-parsley-required='true',data-parsley-trigger='change')
+        fieldset.form-group
+            label Observaciones
+            textarea.form-control(name='obervations')
+        fieldset.form-group
+            label Recomendaciones
+            textarea.form-control(name='recommendations')
+        fieldset.form-group
+            label Medicamentos
+            textarea.form-control(name='medicaments')
+        fieldset.form-group
+            label Indicaciones
+            textarea.form-control(name='indications')
+        fieldset.form-group
+            label Estado de Salud
+            select(name='health')
+                option Bueno
+                option Regular
+                option Malo
+        button#createClinicalAppointmentBtn.radius.remodal-confirm.btn-celestito(type='submit') Guardar

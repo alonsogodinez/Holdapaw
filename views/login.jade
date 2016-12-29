@@ -1,0 +1,13 @@
+.remodal.radius#loginModal(data-remodal-id='loginModal')
+  button.remodal-close.orange(data-remodal-action='close')
+  .login-form
+    form.radius#loginForm(method='POST',action='/login', role="form",data-parsley-validate='')
+      h3 Hold A Paw
+      fieldset.form-group
+        .col-sm-offset-1.col-sm-10
+          input#loginUserEmail.form-control(type='email',placeholder='Tu email' ,name='email',data-parsley-type="email",data-parsley-required="true",data-parsley-trigger="focusout")
+      fieldset.form-group
+        .col-sm-offset-1.col-sm-10
+          input#loginUserPassword.form-control(type='password',placeholder='Tu contraseña' name='password')
+      button#loginUserBtn.button.radius(type='submit',) Ingresar
+

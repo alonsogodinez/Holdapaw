@@ -1,0 +1,16 @@
+extends ../layout-nonav
+
+block content
+  ul
+    each user in users
+      img(src=user.photoThumb)
+      img(src=user.photo)
+
+  include ./create
+
+
+block scripts
+  script(src='/js/user/user.js')
+
+
+

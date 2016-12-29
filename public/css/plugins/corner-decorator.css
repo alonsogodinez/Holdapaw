@@ -1,0 +1,84 @@
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    z-index: 10001
+}
+
+.pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 10001;
+    bottom: -200px;
+    right: -200px;
+    width: 200px;
+    height: 200px;
+    background: #5ac7c2;
+    -webkit-transition: -webkit-transform 1.5s;
+    transition: transform 1.5s;
+    -webkit-transform: translateX(100%) translateY(100%) rotate(-45deg);
+    transform: translateX(100%) translateY(100%) rotate(-45deg);
+    pointer-events: none;
+}
+
+.pace.pace-active .pace-activity {
+    -webkit-transition: -webkit-transform 1s ease-out;
+    transition: transform 1s ease-out;
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    transform: translateX(-51%) translateY(-50%) rotate(-45deg) ;
+}
+
+.pace .pace-activity::before,
+.pace .pace-activity::after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    display: block;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    content: '';
+}
+
+.pace .pace-activity::before {
+    margin-left: -40px;
+    width: 70px;
+    height: 70px;
+    border-right-color: rgba(0, 0, 0, .2);
+    border-left-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-theme-corner-indicator-spin 3s linear infinite;
+    animation: pace-theme-corner-indicator-spin 3s linear infinite;
+}
+
+.pace .pace-activity::after {
+    top: 30px;
+    margin-left: -20px;
+    width: 30px;
+    height: 30px;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-theme-corner-indicator-spin 1s linear infinite;
+    animation: pace-theme-corner-indicator-spin 1s linear infinite;
+}
+
+@-webkit-keyframes pace-theme-corner-indicator-spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(359deg); }
+}
+@keyframes pace-theme-corner-indicator-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+
+/*.pace-running > :not(.pace) {*/
+    /*opacity: 0;*/
+/*}*/
+
+/*.pace-done > :not(.pace) {*/
+    /*opacity: 1;*/
+    /*transition: opacity .5s ease;*/
+/*}*/

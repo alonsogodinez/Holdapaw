@@ -1,0 +1,53 @@
+.remodal.radius-extra#createAssociationModal(data-remodal-id='createAssociationModal',data-remodal-options='closeOnConfirm: false')
+
+  button.orange.remodal-close(data-remodal-action='close')
+  h2  Registra una asociación
+
+  form#createAssociationForm(enctype='multipart/form-data', name='createAssociationForm',data-parsley-validate='')
+      fieldset.form-group
+        .col-xs-12
+          label Email
+        .col-sm-offset-2.col-sm-8
+          input.form-control#createAssociationEmail(type='text', name='email',data-parsley-type='email',data-parsley-required='true',data-parsley-trigger='focusout',
+          data-parsley-email-Exists='true',data-parsley-email-Isreal='True')
+      fieldset.form-group
+        .col-xs-12
+          label Contraseña
+        .col-sm-offset-2.col-sm-8
+          input#passwordAssoc1.form-control(type='password', name='password',data-parsley-minlength='8',data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-xs-12
+          label Confirmacion de contraseña
+        .col-sm-offset-2.col-sm-8
+          input.form-control(type='password', name='password2',data-parsley-minlength='8',data-parsley-equalto='#passwordAssoc1',data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-sm-offset-2.col-sm-8
+          .col-sm-6.np.pr-input-sm
+            label Nombre
+            input.form-control(type='text', name='firstName',data-parsley-required='true',data-parsley-trigger='change')
+          .col-sm-6.np
+            label Telefono/Celular
+            input.form-control(type='text', name='cellphone',data-parsley-type='digits',data-parsley-required='true',data-parsley-trigger='change')
+      fieldset.form-group
+        .col-sm-12
+          label Direccion
+        .col-sm-offset-2.col-sm-8
+          input.form-control(type='text', name='address')
+      fieldset.form-group
+        .col-sm-12
+          label Facebook
+        .col-sm-offset-2.col-sm-8
+            input.form-control(type='url', name='facebook',data-parsley-required='true',data-parsley-trigger='change',data-parsley-type='url')
+      fieldset.form-group
+        .col-xs-12
+          label Cuenta Bancaria para donaciones
+        .col-sm-offset-2.col-sm-8
+          input.form-control(type='text', name='bankAccount')
+      fieldset.form-group
+        .col-xs-12
+          label Foto
+        .col-sm-offset-2.col-sm-8
+          input.form-control-file(type='file', name='photo',accept='image/*')
+      .col.sm-10.mb
+        button#createAssociaiontBtn.radius.remodal-confirm.btn-celestito(type='submit') Guardar
+        button.radius.remodal-cancel(data-remodal-action='cancel') Cancelar

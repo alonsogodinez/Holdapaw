@@ -1,0 +1,142 @@
+extends layout
+
+block navbar_modules
+  if user.isAdmin
+    li
+      a(href='#createVeterinarianModal')
+       span.hidden-xs.glyphicon.glyphicon-plus
+       span.hidden-xs.glyphicon.glyphicon-user
+       span.visible-xs Registrar Veterinario
+    li
+      a(href='#createVeterinaryModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-home
+        span.visible-xs Registrar Clinica
+    li
+      a(href='#createAssociationModal')
+        span.hidden-xs.glyphicon.glyphicon-plus
+        span.hidden-xs.glyphicon.glyphicon-heart
+        span.visible-xs Registrar Asociación
+
+  li
+    a(href='#createDonationModal')
+      span.hidden-xs.glyphicon.glyphicon-plus
+      span.hidden-xs.glyphicon.glyphicon-piggy-bank
+      span.visible-xs Donar
+
+
+
+block modals
+  include veterinarian/create
+  include veterinary/create
+  include association/create
+  include donation/create
+  include adoption/create
+
+
+block content
+
+  section.to-adopt.card-list.text-center
+    h2.big-text.orange En Adopcion
+    each pet in petsToAdopt
+        .radius.pet-card
+          img.radius-top(src=pet.photo)
+          h3.text-center
+            a(href='/mascotas/perfil/#{pet._id}')
+              p Me llamo #{pet.name}
+          p.text-center= pet.description
+          i.fa.fa-birthday-cake
+            span  #{pet.birthday.toLocaleDateString()}
+          if pet.gender == 'male'
+            i.fa.fa-mars
+              span  Macho
+          else
+            i.fa.fa-venus
+              span Hembra
+          i.fa.fa-paw
+            span  Raza #{pet.size}
+
+          if pet.pendingRequests.indexOf(user._id) == -1
+
+            a.btn.btn-naranjita.btn-large.radius-bottom.requestAdoption(data-id=pet.id) Adoptar
+          else
+            a.btn.btn-rojito.btn-large.radius-bottom.cancelAdoption(data-id=pet.id) Cancelar
+
+  //.col-xs-12.text-center.pt
+  //  a.btn.radius.btn-large.btn-celestito Ver mas ...
+
+
+  section.adopted.card-list.text-center
+    h2.big-text.orange Adoptadas
+    each pet in petsAdopted
+      .radius.pet-card
+        img.radius-top(src=pet.photo)
+        h3.text-center
+          a(href='/mascotas/perfil/#{pet._id}')
+            p Me llamo #{pet.name}
+        p.text-center= pet.description
+        i.fa.fa-birthday-cake
+          span  #{pet.birthday.toLocaleDateString()}
+        if pet.gender == 'male'
+          i.fa.fa-mars
+            span  Macho
+        else
+          i.fa.fa-venus
+            span Hembra
+        i.fa.fa-paw
+          span  Raza #{pet.size}
+
+  //.col-xs-12.text-center.pt
+  //  a.btn.radius.btn-large.btn-celestito Ver mas ...
+
+
+  section.associations.card-list.text-center
+    h2.big-text.orange Asociaciones
+    each association in associations
+      .radius.association-card
+        if association.userId.photo
+          img.radius-top(src=association.userId.photo)
+        else
+          img.radius-top(src='/images/profile_default.jpg')
+        h3.text-center
+          a(href='/asociaciones/perfil/#{association._id}')
+            p #{association.userId.firstName}
+        p #{association.userId.email}
+        p #{association.userId.cellphone}
+        p #{association.address}
+        //p #{association.fb}
+  //.col-xs-12.text-center.pt
+  //  a.btn.radius.btn-large.btn-celestito Ver mas ...
+
+
+  section.veterinaries.card-list.text-center
+    h2.big-text.orange Veterinarios
+    each veterinarian in veterinarians
+      .radius.veterinarian-card
+        if veterinarian.userId.photo
+          img.radius-top(src=veterinarian.userId.photo)
+        else
+          img.radius-top(src='/images/profile_default.jpg')
+        h3.text-center
+          a(href='/veterinarios/perfil/#{veterinarian._id}')
+            p #{veterinarian.userId.firstName} #{veterinarian.userId.lastName}
+        p #{veterinarian.speciality}
+        p CMVP #{veterinarian.cmvp}
+        p #{veterinarian.userId.email}
+        p #{veterinarian.userId.cellphone}
+
+
+
+block scripts
+  script(src='/js/main.js')
+  script(src='/js/adoption/adoption.js')
+  script(src='/js/veterinarian/veterinarian.js')
+  script(src='/js/veterinary/veterinary.js')
+  script(src='/js/association/association.js')
+  script(src='/js/donation/donation.js')
+  //.col-xs-12.text-center.pt
+  //  a.btn.radius.btn-large.btn-celestito Ver mas ...
+
+
+
+
